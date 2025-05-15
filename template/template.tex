@@ -30,29 +30,29 @@
 }
 
 % Own environments
-\newcommand{\faRocket}{🚀}
+% \newcommand{\faRocket}{🚀}
 
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable}
 
-\newtcolorbox{exercise}[1]{%
-  breakable,
-  title={#1},
-  colback=blue!5!white,
-  colframe=blue!75!black,
-  fonttitle=\bfseries,
-  boxed title style={colback=blue!20!white},
-}
+% \newtcolorbox{exercise}[1]{%
+%   breakable,
+%   title={#1},
+%   colback=blue!5!white,
+%   colframe=blue!75!black,
+%   fonttitle=\bfseries,
+%   boxed title style={colback=blue!20!white},
+% }
 
 
-\newcounter{exercise}[chapter]
-\newenvironment{exercise}[1][]{
-  \refstepcounter{exercise}
-  \begin{framed}
-  \noindent\textbf{Exercise~\theexercise\ (#1)}\par
-}{
-  \end{framed}
-}
+% \newcounter{exercise}[chapter]
+% \newenvironment{exercise}[1][]{
+%   \refstepcounter{exercise}
+%   \begin{framed}
+%   \noindent\textbf{Exercise~\theexercise\ (#1)}\par
+% }{
+%   \end{framed}
+% }
 % einde
 
 % Style quotes
