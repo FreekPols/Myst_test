@@ -3,6 +3,7 @@ version: 1
 project:
   plugins:
     - plugins/pdf_exercise.mjs
+    - plugins/experiment.mjs
 
   id: d2c15031-cac1-48b9-9be0-705b0ae31f98
   title: Test file
