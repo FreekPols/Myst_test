@@ -15,6 +15,13 @@ const experiment = {
     let title = data.arg.trim();
     let body = data.body.trim();
 
+    console.log("[experiment plugin] ", data.arg, data.body);
+    console.log("[experiment plugin] ", ctx.parseMyst(body));
+    console.log("[experiment plugin] ", ctx.parseMyst(body)["children"]);
+    console.log("[experiment plugin] ", ctx.parseMyst(body)["children"][0]);
+
+
+
     const admonition = {
         "type": "admonition",
         "kind": "error",
@@ -33,7 +40,7 @@ const experiment = {
           
           {
             "type": "paragraph",
-            "children": ctx.parseMyst(body)["children"][0]["children"]
+            "children": ctx.parseMyst(body)["children"] 
           }
         ]
     }
