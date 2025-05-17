@@ -21,7 +21,7 @@ const exerciseTransform = {
     const labelMap = new Map();
     let exerciseCounter = 0;
 
-
+    
     if (isPDF) {
       // Only process the main document's children
       const rootChildren = tree.children[0]?.children || [];
