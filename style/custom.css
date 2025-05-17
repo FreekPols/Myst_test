@@ -3,7 +3,7 @@
 
 /* Parent */
 aside.admonition-experiment {
-  border-color: orange !important; /* Important zorgt ervoor dat we over de oude stijl heen schrijven */
+  border-color: blue !important; /* Important zorgt ervoor dat we over de oude stijl heen schrijven */
   background-color: lightyellow;
 } 
 
