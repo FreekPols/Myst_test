@@ -1,6 +1,30 @@
-.admonition-experiment {
-  /* Your existing styles */
+
+/* Code toegevoegd 17/05. Leuke kleurtjes zodat het makkelijk te zien is wat waar komt */
+
+/* Parent */
+aside.admonition-experiment {
+  border-color: orange !important; /* Important zorgt ervoor dat we over de oude stijl heen schrijven */
+  background-color: lightyellow;
+} 
+
+/* Title */
+aside.admonition-experiment > div:first-child {
+  background-color: rgb(238, 196, 119);
 }
+
+/* Icon */
+aside.admonition-experiment > div:first-child::before {
+  content: "🧪";
+  /* add padding left so it is not directly on the side*/
+  padding-left: 0.3em;
+}
+
+aside.admonition-experiment > div:first-child > div:first-child {
+  background-color: rgb(238, 196, 119);
+  margin-left: 0 !important; /* voorkomt dubbele margin */
+}
+
+/* end of new code */
 
 .admonition-experiment .admonition-title-experiment {
   background-color: black; /* Change header background color */
