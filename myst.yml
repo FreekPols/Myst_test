@@ -12,7 +12,7 @@ project:
   # keywords: []
   authors: [Freek]
   abstract: Test programma voor eigen LaTeX template
-  # github:
+  github: https://github.com/FreekPols/Myst_test
   downloads:
     - id: output-pdf
   exports:
