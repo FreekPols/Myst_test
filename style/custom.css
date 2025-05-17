@@ -1,0 +1,22 @@
+.admonition-experiment {
+  /* Your existing styles */
+}
+
+.admonition-experiment .admonition-title-experiment {
+  background-color: black; /* Change header background color */
+  color: #FFFFFF; /* Change header text color */
+}
+
+/* Custom icon using ::before pseudo-element */
+.admonition-experiment .admonition-title-experiment::before {
+  content: "🧪"; /* Use an emoji or */
+  content: "\f0c3"; /* Use a FontAwesome icon code */
+  font-family: "Font Awesome 5 Free"; /* If using FontAwesome */
+  margin-right: 0.5em;
+}
+
+.text-gradient em {
+  background: -webkit-linear-gradient(#17ed04, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
