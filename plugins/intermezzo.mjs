@@ -48,30 +48,7 @@ const intermezzo = {
   }
 };
 
-const intermezzoTransform = {
-  name: "conditional-intermezzo",
-  doc: "Replace intermezzos in PDF builds.",
-  stage: "document",
-  plugin: (opts, utils) => (tree) => {
-    // Detect if we are building a PDF
-    const isPDF = process.argv.some(arg => arg.includes("pdf"));
 
-    if (isPDF) {
-      // Only process the main document's children
-      const rootChildren = tree.children[0]?.children || [];
-      
-      rootChildren.forEach((node, index) => {
-        if (node.type === "intermezzo") {
-          console.log("[intermezzo plugin] replacing an intermezzo inside the pdf");
-          const text = node.children[0].children[0].value;
-          node.type = "admonition";
-          node.kind = "note";
-          node.children[0].children[0].value = `Intermezzo: ${text}`;
-        }
-      });
-    }
-  },
-};
 
 const plugin = {
   name: "intermezzo",
