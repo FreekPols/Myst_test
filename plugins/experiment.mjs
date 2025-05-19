@@ -24,7 +24,7 @@ const experiment = {
 
     const admonition = {
         "type": "admonition",
-        "kind": "",
+        "kind": "admonition",
         "class": "admonition-experiment",  //Add class (custom.css)
         "icon": false,
         "children": [

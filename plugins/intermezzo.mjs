@@ -24,7 +24,7 @@ const intermezzo = {
 
     const admonition = {
         "type": "admonition",
-        "kind": "",
+        "kind": "admonition",
         "class": "admonition-intermezzo",  //Add class (custom.css)
         "icon": false,
         "children": [
