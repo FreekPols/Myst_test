@@ -74,18 +74,6 @@ const exerciseTransform = {
 
       // Adjust the intermezzo class   
       
-      rootChildren.forEach((node, index) => {
-        if (node.type === "admonition" && node.kind === "intermezzo") {
-          console.log("[intermezzo plugin] replacing an intermezzo inside the pdf");
-          const text = node.children[0].children[0].value;
-          
-          node.type = "admonition";
-          node.kind = "note";
-          node.children[0].children[0].value = `Intermezzo: ${text}`;
-
-          console.log(`[intermezzo plugin] adjusted solution to ${text}`);
-        }
-      });
 
     }
   },
