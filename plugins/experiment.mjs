@@ -48,6 +48,31 @@ const experiment = {
   }
 };
 
+// transform function to replace the experiment directive with an admonition in PDF builds
+const experimentTransform = {
+  name: "conditional-experiment",
+  doc: "Replace experiments in PDF builds.",
+  stage: "document",
+  plugin: (opts, utils) => (tree) => {
+    // Detect if we are building a PDF
+    const isPDF = process.argv.some(arg => arg.includes("pdf"));
+
+    if (isPDF) {
+      // Only process the main document's children
+      const rootChildren = tree.children[0]?.children || [];
+      
+      rootChildren.forEach((node, index) => {
+        if (node.type === "experiment") {
+          console.log("[experiment plugin] replacing an experiment inside the pdf");
+          node.type = "admonition";
+          node.kind = "note";
+        }
+      });
+    }
+  },
+};
+
+
 const plugin = {
   name: "experiment",
   directives: [experiment],

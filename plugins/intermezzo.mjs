@@ -63,8 +63,10 @@ const intermezzoTransform = {
       rootChildren.forEach((node, index) => {
         if (node.type === "intermezzo") {
           console.log("[intermezzo plugin] replacing an intermezzo inside the pdf");
+          const text = node.children[0].children[0].value;
           node.type = "admonition";
           node.kind = "note";
+          node.children[0].children[0].value = `Intermezzo: ${text}`;
         }
       });
     }
