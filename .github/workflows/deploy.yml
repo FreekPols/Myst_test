@@ -75,6 +75,11 @@ jobs:
   
       # - name: Build PDF Assets
       #   run: myst build --pdf
+
+      - name: Install Typst CLI
+        run: |
+          curl -s https://typst.app/install.sh | bash
+          echo "$HOME/.typst" >> $GITHUB_PATH
       - name: Build PDF with Typst
         run: myst build --pdf --typst
       - name: Build HTML Assets
