@@ -14,11 +14,12 @@ project:
   authors: [Freek]
   abstract: Test programma voor eigen LaTeX template
   github: https://github.com/FreekPols/Myst_test
+  
   downloads:
     - id: output-pdf
   exports:
-    - format: pdf
-      template: ./template
+    - format: typst #pdf
+      template: lapreprint-typst #./template
       output: exports/document.pdf
       id: output-pdf
 
