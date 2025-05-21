@@ -40,46 +40,49 @@ jobs:
       # pdf 
       #- uses: typst-community/setup-typst@v4 # for lapreprint-typst pdf (in myst.yml)
 
-      # - name: Setup TeX Live
-      #   uses: teatimeguest/setup-texlive-action@v3
-      #   with:
-      #     packages: |  
-      #       scheme-basic
-      #       xetex
-      #       latexmk
-      #       hyperref
-      #       microtype
-      #       caption
-      #       xcolor
-      #       changepage
-      #       amsfonts
-      #       enumitem
-      #       framed
-      #       booktabs
-      #       fontawesome5
-      #       tcolorbox
-      #       pdfcol
-      #       adjustbox            
-      #       varwidth  
-      #       ulem       
-      #       titlesec   
-      #       amsmath    
-      #       fancyvrb  
-      #       nicefrac
-      #       float
-      #       datetime
-      #       fmtcount
-      #       doi
+      - name: Setup TeX Live
+        uses: teatimeguest/setup-texlive-action@v3
+        with:
+          packages: |  
+            scheme-basic
+            xetex
+            latexmk
+            hyperref
+            microtype
+            caption
+            xcolor
+            changepage
+            amsfonts
+            enumitem
+            framed
+            booktabs
+            fontawesome5
+            tcolorbox
+            pdfcol
+            adjustbox            
+            varwidth  
+            ulem       
+            titlesec   
+            amsmath    
+            fancyvrb  
+            nicefrac
+            float
+            datetime
+            fmtcount
+            doi
       
 
   
       # - name: Build PDF Assets
       #   run: myst build --pdf
 
-      - name: Install Typst
-        uses: typst-community/setup-typst@v4 # for lapreprint-typst pdf (in myst.yml)
-      - name: Build PDF with Typst
-        run: myst build --pdf --typst
+      #### TRYING TO BUILD PDF WITH TYPST
+      # - name: Install Typst
+      #   uses: typst-community/setup-typst@v4 # for lapreprint-typst pdf (in myst.yml)
+      # - name: Build PDF with Typst
+      #   run: myst build --pdf --typst
+
+
       - name: Build HTML Assets
         run: myst build --html
       - name: Upload artifact

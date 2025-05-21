@@ -18,8 +18,8 @@ project:
   downloads:
     - id: output-pdf
   exports:
-    - format: typst #pdf
-      template: lapreprint-typst #./template
+    - format: pdf # typst 
+      template: ./template #lapreprint-typst 
       output: exports/document.pdf
       id: output-pdf
 
