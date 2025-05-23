@@ -36,42 +36,6 @@ jobs:
           node-version: 18.x
       - name: Install MyST Markdown
         run: npm install -g mystmd
-        
-      # pdf 
-      #- uses: typst-community/setup-typst@v4 # for lapreprint-typst pdf (in myst.yml)
-
-      # - name: Setup TeX Live
-      #   uses: teatimeguest/setup-texlive-action@v3
-      #   with:
-      #     packages: |  
-      #       scheme-basic
-      #       xetex
-      #       latexmk
-      #       hyperref
-      #       microtype
-      #       caption
-      #       xcolor
-      #       changepage
-      #       amsfonts
-      #       enumitem
-      #       framed
-      #       booktabs
-      #       fontawesome5
-      #       tcolorbox
-      #       pdfcol
-      #       adjustbox            
-      #       varwidth  
-      #       ulem       
-      #       titlesec   
-      #       amsmath    
-      #       fancyvrb  
-      #       nicefrac
-      #       float
-      #       datetime
-      #       fmtcount
-      #       doi
-      
-
   
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
@@ -80,12 +44,18 @@ jobs:
       - name: Build Typst source with MyST
         run: myst build --typst
 
-      #### TRYING TO BUILD PDF WITH TYPST
-      # - name: Install Typst
-      #   uses: typst-community/setup-typst@v4 # for lapreprint-typst pdf (in myst.yml)
-      # - name: Build PDF with Typst
-      #   run: myst build --pdf --typst
+        - name: Commit and Push _build directory to Repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Force-add _build even if it's ignored
+          git add -f _build
+
+          git commit -m "chore: update _build from CI" || echo "No changes to commit"
+          git push origin HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build HTML Assets
         run: myst build --html
