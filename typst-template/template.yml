@@ -1,0 +1,24 @@
+myst: v1
+title: Plain Typst Book
+description: A plain book-style document using Typst
+version: '1.0.0'
+authors:
+  - name: Rowan Cockett
+    website: https://row1.ca
+    affiliations:
+      - Curvenote
+      - Executable Books
+license: CC-BY-4.0
+thumbnail: ./thumbnail.png
+tags:
+  - book
+doc:
+  - id: title
+  - id: subtitle
+  - id: authors
+  - id: bibliography
+
+exports:
+  - format: typst
+    output: exports/typst_document.pdf
+    template: book.typ

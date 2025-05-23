@@ -20,6 +20,7 @@ project:
   exports:
     - format: typst # typst 
       output: exports/typst_document.pdf
+      template: ./typst-template
       id: output-pdf
 
   jupyter: true
