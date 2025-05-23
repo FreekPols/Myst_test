@@ -78,7 +78,7 @@ jobs:
 
       # 2. Build .typ file using MyST
       - name: Build Typst source with MyST
-        run: myst build article.md --typst
+        run: myst build --typst
 
       #### TRYING TO BUILD PDF WITH TYPST
       # - name: Install Typst
