@@ -19,7 +19,6 @@ project:
     - id: output-pdf
   exports:
     - format: typst # typst 
-      template: lapreprint-typst 
       output: exports/typst_document.pdf
       id: output-pdf
 
