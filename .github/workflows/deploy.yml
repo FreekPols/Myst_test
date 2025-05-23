@@ -73,9 +73,12 @@ jobs:
       
 
   
-      - name: Build PDF Assets
+      - name: Setup Typst
         uses: typst-community/setup-typst@v4
-        run: myst build --typst
+
+      # 2. Build .typ file using MyST
+      - name: Build Typst source with MyST
+        run: myst build article.md --typst
 
       #### TRYING TO BUILD PDF WITH TYPST
       # - name: Install Typst
