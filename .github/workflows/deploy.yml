@@ -47,23 +47,26 @@ jobs:
       - name: Build Typst source with MyST
         run: myst build --typst
 
-      - name: Commit and Push PDF to Repository
+      - name: Build HTML Assets
+        run: myst build --html
+
+      - name: Commit and Push Exported Files to Repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Ensure the file exists
-          ls -lh exports/typst_document.pdf
+          # Show contents for verification
+          ls -lh exports/
 
-          # Add and commit the PDF
-          git add -f exports/typst_document.pdf
-          git commit -m "chore: update PDF export from CI" || echo "No changes to commit"
+          # Stage the whole exports directory
+          git add -f exports/
+
+          git commit -m "chore: update export folder from CI" || echo "No changes to commit"
           git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build HTML Assets
-        run: myst build --html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

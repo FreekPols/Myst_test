@@ -17,10 +17,16 @@ project:
   
   downloads:
     - id: output-pdf
+    - id : output-typst
   exports:
     - format: typst # typst 
       output: exports/typst_document.pdf
       template: lapreprint-typst
+      id: output-typst
+
+    - format: pdf
+      output: exports/pdf_document.pdf
+      template: ./template
       id: output-pdf
 
   jupyter: true
