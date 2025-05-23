@@ -18,9 +18,9 @@ project:
   downloads:
     - id: output-pdf
   exports:
-    - format: pdf # typst 
-      template: ./template #lapreprint-typst 
-      output: exports/document.pdf
+    - format: typst # typst 
+      template: lapreprint-typst 
+      output: exports/typst_document.pdf
       id: output-pdf
 
   jupyter: true
