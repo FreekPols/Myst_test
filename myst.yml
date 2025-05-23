@@ -20,6 +20,7 @@ project:
   exports:
     - format: typst # typst 
       output: exports/typst_document.pdf
+      template: lapreprint-typst
       id: output-pdf
 
   jupyter: true
