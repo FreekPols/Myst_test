@@ -84,21 +84,21 @@ jobs:
       - name: Build HTML Assets
         run: myst build --html
 
-      - name: Commit and Push Exported Files to Repository
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: Commit and Push Exported Files to Repository
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Show contents for verification
-          ls -lh exports/
+      #     # Show contents for verification
+      #     ls -lh exports/
 
-          # Stage the whole exports directory
-          git add -f exports/
+      #     # Stage the whole exports directory
+      #     git add -f exports/
 
-          git commit -m "chore: update export folder from CI" || echo "No changes to commit"
-          git push origin HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     git commit -m "chore: update export folder from CI" || echo "No changes to commit"
+      #     git push origin HEAD:main
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
       - name: Upload artifact
