@@ -15,10 +15,10 @@ const experiment = {
     let title = data.arg.trim();
     let body = data.body.trim();
 
-    console.log("[experiment plugin] ", data.arg, data.body);
-    console.log("[experiment plugin] ", ctx.parseMyst(body));
-    console.log("[experiment plugin] ", ctx.parseMyst(body)["children"]);
-    console.log("[experiment plugin] ", ctx.parseMyst(body)["children"][0]);
+    // console.log("[experiment plugin] ", data.arg, data.body);
+    // console.log("[experiment plugin] ", ctx.parseMyst(body));
+    // console.log("[experiment plugin] ", ctx.parseMyst(body)["children"]);
+    // console.log("[experiment plugin] ", ctx.parseMyst(body)["children"][0]);
 
 
 
