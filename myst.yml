@@ -20,12 +20,12 @@ project:
     - id : output-typst
   exports:
     - format: typst # typst 
-      output: exports/typst_document.pdf
+      output: exports/document_typst.pdf
       template: lapreprint-typst
       id: output-typst
 
     - format: pdf
-      output: exports/pdf_document.pdf
+      output: exports/document_pdf.pdf
       template: ./template
       id: output-pdf
 
