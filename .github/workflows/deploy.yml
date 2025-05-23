@@ -1,3 +1,7 @@
+# Toegevoegd 23/05/2025: 
+# Read and Write access naar de repository contents zodat we de PDF bestanden kunnen opslaan
+# Zie 'Commit and Push PDF to Repository'
+
 # This file was created automatically with `myst init --gh-pages` 🪄 💚
 # Ensure your GitHub Pages settings for this repository are set to deploy with **GitHub Actions**.
 
