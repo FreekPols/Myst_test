@@ -47,6 +47,9 @@ jobs:
       - name: Build Typst source with MyST
         run: myst build --typst
 
+      - name: Build pdf
+        run: myst build --pdf
+
       - name: Build HTML Assets
         run: myst build --html
 
