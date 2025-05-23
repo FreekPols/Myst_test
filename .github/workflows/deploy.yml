@@ -40,11 +40,10 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
 
-      # 2. Build .typ file using MyST
       - name: Build Typst source with MyST
         run: myst build --typst
 
-        - name: Commit and Push _build directory to Repository
+      - name: Commit and Push _build directory to Repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
