@@ -47,6 +47,11 @@ aside.admonition-intermezzo {
   background-color: rgb(255, 255, 255); 
 } 
 
+/* For some reason this is changed between note admonition and custom admonition */
+aside.admonition-intermezzo img {
+  display: block;
+}
+
 /* Title */
 aside.admonition-intermezzo > div:first-child {
   background-color: rgb(218, 154, 255);  
