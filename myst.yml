@@ -38,6 +38,7 @@ project:
     - file: test.md
     - file: H1.md
     - file: H2.md
+    - file: testfile.ipynb
 
 site:
   template: book-theme
