@@ -5,13 +5,16 @@ kernelspec:
   name: python3
 ---
 
+Code cell met ipython 3 in een md file
+
 ```{code-cell} ipython3
 import numpy as np
-import plotly.express as px
+import matplotlib.pytplot as plt
 
 x = np.linspace(0, 2*np.pi, 100)
 y = np.sin(x)
 
-fig = px.line(x = x, y = y)
-fig.show()
+plt.figure()
+plt.plot(x,y,'k.')
+plt.show()
 ```
