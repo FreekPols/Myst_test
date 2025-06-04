@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "myst-test"
+version = "0.1.0"
+description = "A test project for MyST and ipywidgets"
+authors = ["Freek"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+myst-nb = "^1.0"
+ipywidgets = "^8.0"
+numpy = "*"
+matplotlib = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
