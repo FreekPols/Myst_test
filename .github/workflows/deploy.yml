@@ -82,8 +82,9 @@ jobs:
         run: myst build --pdf
 
       - name: Build HTML Assets
-        run: myst build --execute
-        run: myst build --html
+        run: |
+          myst build --execute
+          myst build --html
 
       # - name: Commit and Push Exported Files to Repository
       #   run: |
