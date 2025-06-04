@@ -29,8 +29,8 @@ project:
       template: ./template
       id: output-pdf
 
-  jupyter: true
-   # lite: true
+  jupyter:
+   lite: true
   
   # To autogenerate a Table of Contents, run "myst init --write-toc"
   toc:
