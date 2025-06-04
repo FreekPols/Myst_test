@@ -81,6 +81,18 @@ jobs:
       - name: Build pdf
         run: myst build --pdf
 
+#### TRYING TO WORK WITH PYTHON
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install myst[nb] ipywidgets numpy matplotlib
+#### END WORK WITH PYTHON
+
       - name: Build HTML Assets
         run: |
           myst build --execute
