@@ -39,6 +39,7 @@ project:
     - file: H1.md
     - file: H2.md
     - file: testfile.ipynb
+    - file: doitest.md
 
 site:
   template: book-theme
