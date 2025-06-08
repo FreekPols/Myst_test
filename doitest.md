@@ -7,5 +7,7 @@
 
 second test
 
+{cite:p}`https://doi.org/10.1119/5.0094657`\
+{cite:p}`https://doi.org/10.1119/5.0149407`\
 <https://doi.org/10.1119/5.0094657>
 <https://doi.org/10.1119/5.0149407>
