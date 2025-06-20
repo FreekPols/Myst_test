@@ -1,4 +1,6 @@
 ---
+title: test
+
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -20,5 +22,7 @@ plt.show()
 ```
 
 ```{figure} fig1.png
+:width: 70%
 
+Some caption
 ```

@@ -15,7 +15,8 @@ project:
   abstract: Test programma voor eigen LaTeX template
   github: https://github.com/FreekPols/Myst_test
   
-  numbering: 
+  numbering:
+    title: true 
     headings: true
     figure: 
       continue: true
