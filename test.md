@@ -18,3 +18,7 @@ plt.figure()
 plt.plot(x,y,'k.')
 plt.show()
 ```
+
+```{figure} fig1.png
+
+```

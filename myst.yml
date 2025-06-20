@@ -15,6 +15,11 @@ project:
   abstract: Test programma voor eigen LaTeX template
   github: https://github.com/FreekPols/Myst_test
   
+  numbering: 
+    headings: true
+    figure: 
+      continue: true
+
   downloads:
     - id: output-pdf
     - id : output-typst
