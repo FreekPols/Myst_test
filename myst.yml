@@ -20,6 +20,8 @@ project:
     headings: true
     figure: 
       continue: true
+    # equations:
+    #   continue: true
 
   downloads:
     - id: output-pdf
@@ -46,8 +48,9 @@ project:
     - file: H2.md
     - file: testfile.ipynb
     - file: doitest.md
-    - file: vpythontest.ipynb
-
+      children:
+      - file: vpythontest.ipynb
+    - file: test4.md
 site:
   template: book-theme
   options:
