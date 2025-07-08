@@ -11,7 +11,7 @@ Code cell met ipython 3 in een md file
 
 ```{code-cell} ipython3
 import numpy as np
-import matplotlib.pytplot as plt
+import matplotlib.pyplot as plt
 
 x = np.linspace(0, 2*np.pi, 100)
 y = np.sin(x)
