@@ -41,45 +41,45 @@ jobs:
       - name: Install MyST Markdown
         run: npm install -g mystmd
   
-      - name: Setup Typst
-        uses: typst-community/setup-typst@v4
+      # - name: Setup Typst
+      #   uses: typst-community/setup-typst@v4
 
-      - name: Build Typst source with MyST
-        run: myst build --typst
+      # - name: Build Typst source with MyST
+      #   run: myst build --typst
       
-      - name: Setup TeX Live
-        uses: teatimeguest/setup-texlive-action@v3
-        with:
-          packages: |  
-            scheme-basic
-            xetex
-            latexmk
-            hyperref
-            microtype
-            caption
-            xcolor
-            changepage
-            amsfonts
-            enumitem
-            framed
-            booktabs
-            fontawesome5
-            tcolorbox
-            pdfcol
-            adjustbox            
-            varwidth  
-            ulem       
-            titlesec   
-            amsmath    
-            fancyvrb  
-            nicefrac
-            float
-            datetime
-            fmtcount
-            doi
+      # - name: Setup TeX Live
+      #   uses: teatimeguest/setup-texlive-action@v3
+      #   with:
+      #     packages: |  
+      #       scheme-basic
+      #       xetex
+      #       latexmk
+      #       hyperref
+      #       microtype
+      #       caption
+      #       xcolor
+      #       changepage
+      #       amsfonts
+      #       enumitem
+      #       framed
+      #       booktabs
+      #       fontawesome5
+      #       tcolorbox
+      #       pdfcol
+      #       adjustbox            
+      #       varwidth  
+      #       ulem       
+      #       titlesec   
+      #       amsmath    
+      #       fancyvrb  
+      #       nicefrac
+      #       float
+      #       datetime
+      #       fmtcount
+      #       doi
 
-      - name: Build pdf
-        run: myst build --pdf
+      # - name: Build pdf
+      #   run: myst build --pdf
 
 #### TRYING TO WORK WITH PYTHON
       - name: Install python
