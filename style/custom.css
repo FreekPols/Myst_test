@@ -13,6 +13,12 @@ html[data-theme='dark'] aside.admonition-experiment > div:first-child {
   color: white;
 }
 
+
+html[data-theme='dark'] .admonition-experiment .admonition-title-experiment {
+  background-color: black; /* Change header background color */
+  color: #0a0000; /* Change header text color */
+}
+
 aside.admonition-experiment {
   border-color: rgb(255, 0, 0) !important; /* Important zorgt ervoor dat we over de oude stijl heen schrijven */
   background-color: rgb(255, 255, 255); /* Change background color text part*/
