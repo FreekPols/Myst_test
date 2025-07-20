@@ -3,20 +3,22 @@
 
 /* ADMONITION EXPERIMENT */
 /* Parent */
+
 html[data-theme='dark'] aside.admonition-experiment {
   border-color: rgb(255, 100, 100) !important;
   background-color: rgb(30, 30, 30);
 }
 
+/* Structure-based selector */
 html[data-theme='dark'] aside.admonition-experiment > div:first-child {
   background-color: rgb(100, 0, 0);
   color: white;
 }
 
-
+/* Class-based selector */
 html[data-theme='dark'] .admonition-experiment .admonition-title-experiment {
-  background-color: black; /* Change header background color */
-  color: #0a0000; /* Change header text color */
+  background-color: rgb(100, 0, 0);  /* match the same color */
+  color: white;
 }
 
 aside.admonition-experiment {
