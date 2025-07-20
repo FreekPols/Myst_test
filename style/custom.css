@@ -4,19 +4,19 @@
 /* ADMONITION EXPERIMENT */
 /* Parent */
 
-html[data-theme='dark'] .admonition-experiment {
+.dark .admonition-experiment {
   border-color: rgb(255, 100, 100) !important;
   background-color: rgb(30, 30, 30);
 }
 
 /* Structure-based selector */
-html[data-theme='dark'] .admonition-experiment > div:first-child {
+.dark .admonition-experiment > div:first-child {
   background-color: rgb(100, 0, 0);
   color: white;
 }
 
 /* Class-based selector */
-html[data-theme='dark'] .admonition-experiment .admonition-title-experiment {
+.dark .admonition-experiment .admonition-title-experiment {
   background-color: rgb(0, 100, 38);  /* match the same color */
   color: white;
 }
