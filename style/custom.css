@@ -3,6 +3,16 @@
 
 /* ADMONITION EXPERIMENT */
 /* Parent */
+html[data-theme='dark'] aside.admonition-experiment {
+  border-color: rgb(255, 100, 100) !important;
+  background-color: rgb(30, 30, 30);
+}
+
+html[data-theme='dark'] aside.admonition-experiment > div:first-child {
+  background-color: rgb(100, 0, 0);
+  color: white;
+}
+
 aside.admonition-experiment {
   border-color: rgb(255, 0, 0) !important; /* Important zorgt ervoor dat we over de oude stijl heen schrijven */
   background-color: rgb(255, 255, 255); /* Change background color text part*/
