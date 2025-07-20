@@ -4,21 +4,19 @@
 /* ADMONITION EXPERIMENT */
 /* Parent */
 
-.dark .admonition-experiment {
+.dark aside.admonition-experiment {
   border-color: rgb(255, 100, 100) !important;
   background-color: rgb(30, 30, 30);
 }
 
-/* Structure-based selector */
-.dark .admonition-experiment > div:first-child {
-  background-color: rgb(100, 0, 0);
+.dark aside.admonition-experiment > div:first-child {
+  background-color: rgb(3, 164, 83);
   color: white;
 }
 
-/* Class-based selector */
 .dark .admonition-experiment .admonition-title-experiment {
-  background-color: rgb(0, 100, 38);  /* match the same color */
-  color: white;
+  background-color: rgb(6, 145, 25);
+  color: rgb(248, 5, 171);
 }
 
 aside.admonition-experiment {
