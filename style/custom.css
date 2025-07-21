@@ -4,20 +4,21 @@
 /* ADMONITION EXPERIMENT */
 /* Parent */
 
-.dark aside.admonition-experiment {
+/* .dark aside.admonition-experiment {
   border-color: rgb(255, 100, 100) !important;
   background-color: rgb(30, 30, 30);
 }
 
 .dark aside.admonition-experiment > div:first-child {
   background-color: rgb(3, 164, 83);
-  color: white;
+  color: rgb(246, 27, 27);
+} */
+
+/*title in dark mode*/
+.dark aside.admonition-experiment .dark\:text-white {
+   color: rgb(23 25 25); 
 }
 
-.dark .admonition-experiment .admonition-title-experiment {
-  background-color: rgb(6, 145, 25);
-  color: rgb(248, 5, 171);
-}
 
 aside.admonition-experiment {
   border-color: rgb(255, 0, 0) !important; /* Important zorgt ervoor dat we over de oude stijl heen schrijven */
