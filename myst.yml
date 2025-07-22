@@ -2,8 +2,8 @@
 version: 1
 project:
   plugins:
-    - plugins/pdf_exercise.mjs
     - plugins/experiment.mjs
+    - plugins/pdf_exercise.mjs
     - plugins/intermezzo.mjs
 
 
