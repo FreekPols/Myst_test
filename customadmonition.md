@@ -3,7 +3,7 @@
 ## Custom admonitions
 It is possible to make [your own admonition](https://next.jupyterbook.org/plugins/directives-and-roles/#create-a-custom-admonition) and embed it through a [plugin](https://next.jupyterbook.org/tutorial/plugins/). The colors, icon and behaviour in dark/light mode can be specified through a customs css file. 
 
-```{raw} markdown
+```{code} yml
 /* Custom experiment admonition, based on documentation (see https://next.jupyterbook.org/plugins/directives-and-roles#create-a-custom-admonition). 
 *   css file (custom.css) included in style folder. 
 */
@@ -64,7 +64,7 @@ const plugin = {
 export default plugin;
 ```
 
-```{raw} css
+```{code} css
 /*Title color in dark mode*/
 .dark aside.admonition-experiment .dark\:text-white {
    color: rgb(23 25 25); 
