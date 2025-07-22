@@ -26,3 +26,6 @@ plt.show()
 
 Some caption
 ```
+
+en een link:
+[](                        https://doi.org/10.59490/tb.101)              
