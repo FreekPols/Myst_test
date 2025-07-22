@@ -99,3 +99,9 @@ aside.admonition-intermezzo > div:first-child > div:first-child {
   font-family: "Font Awesome 5 Free"; /* If using FontAwesome */
   margin-right: 0.5em;
 }
+
+
+.dark img[src$=".svg"]:not(.no-invert) {
+  filter: invert(1) brightness(1);
+} 
+
