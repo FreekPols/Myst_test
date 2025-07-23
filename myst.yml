@@ -55,6 +55,7 @@ project:
       - file: vpythontest.ipynb
     - file: test4.md
     - file: customadmonition.md
+    - file: test100.ipynb
 site:
   template: book-theme
   options:
