@@ -60,5 +60,6 @@ site:
   template: book-theme
   options:
     style: ./style/custom.css
+    scripts: _static/custom.js
 
   
