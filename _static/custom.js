@@ -1,26 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const editLink = document.querySelector('a[href*="github.com"][href*="/blob/"]');
+  // Zoek de toolbar met de bestaande iconen
+  const toolbar = document.querySelector('.bd-header-buttons, .button-container, nav[role="navigation"]');
 
-  if (editLink && editLink.href.endsWith(".md")) {
-    const editHref = editLink.href;
-    const colabHref = editHref.replace(".md", ".ipynb");
-    const colabUrl = "https://colab.research.google.com/" + colabHref.split("github.com/")[1];
+  if (!toolbar) return;
 
-    const colabBtn = document.createElement("a");
-    colabBtn.href = colabUrl;
-    colabBtn.target = "_blank";
-    colabBtn.title = "Open in Colab";
+  // Zoek de edit- of GitHub-link om de basislink af te leiden
+  const editLink = toolbar.querySelector('a[href*="github.com"][href*="/blob/"]');
+  if (!editLink || !editLink.href.endsWith('.md')) return;
 
-    // Stijl of badge
-    const img = document.createElement("img");
-    img.src = "https://colab.research.google.com/assets/colab-badge.svg";
-    img.alt = "Open in Colab";
-    img.style.verticalAlign = "middle";
+  const editHref = editLink.href;
+  const colabHref = editHref.replace(".md", ".ipynb");
+  const colabUrl = "https://colab.research.google.com/" + colabHref.split("github.com/")[1];
 
-    colabBtn.appendChild(img);
-    colabBtn.style.marginLeft = "10px";
+  // Maak de Colab-knop
+  const colabBtn = document.createElement("a");
+  colabBtn.href = colabUrl;
+  colabBtn.target = "_blank";
+  colabBtn.title = "Open in Colab";
 
-    // Voeg toe naast de edit-knop
-    editLink.parentElement.appendChild(colabBtn);
-  }
+  // Gebruik Colab-icoon of badge
+  const img = document.createElement("img");
+  img.src = "https://colab.research.google.com/assets/colab-badge.svg";
+  img.alt = "Open in Colab";
+  img.style.height = "1.5em";
+  img.style.verticalAlign = "middle";
+
+  colabBtn.appendChild(img);
+  colabBtn.style.marginLeft = "0.5em";
+
+  // Voeg de knop toe aan de toolbar
+  toolbar.appendChild(colabBtn);
 });
