@@ -5,6 +5,7 @@ project:
     - plugins/experiment.mjs
     - plugins/pdf_exercise.mjs
     - plugins/intermezzo.mjs
+    - plugins/thebe.mjs
 
 
   id: d2c15031-cac1-48b9-9be0-705b0ae31f98
