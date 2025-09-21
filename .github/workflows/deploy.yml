@@ -1,131 +1,109 @@
-# Toegevoegd 23/05/2025: 
-# Read and Write access naar de repository contents zodat we de PDF bestanden kunnen opslaan
-# Zie 'Commit and Push PDF to Repository'
+# bouwen met eigen mystmd
 
-# This file was created automatically with `myst init --gh-pages` 🪄 💚
-# Ensure your GitHub Pages settings for this repository are set to deploy with **GitHub Actions**.
+name: Build & Deploy (forked mystmd)
 
-name: MyST GitHub Pages Deploy
 on:
   push:
-    # Runs on pushes targeting the default branch
-    branches: [main]
-env:
-  # `BASE_URL` determines the website is served from, including CSS & JS assets
-  # You may need to change this to `BASE_URL: ''`
-  BASE_URL: /${{ github.event.repository.name }}
+    branches: [ main ]
+  workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+
+env:
+  BASE_URL: /${{ github.event.repository.name }}
+
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: false
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) Check out jouw content repo
+      - uses: actions/checkout@v4
+
+      # 2) Check out jouw mystmd-fork
+      - name: Checkout mystmd fork
+        uses: actions/checkout@v4
+        with:
+          repository: FreekPols/mystmd          # <-- jouw fork
+          ref: feature/admonition               # <-- jouw branch
+          path: mystmd
+
+      # 3) Node + pnpm
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - name: Enable pnpm via corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
+      # 4) Build mystmd monorepo
+      - name: Install & build mystmd
+        working-directory: mystmd
+        run: |
+          pnpm install
+          pnpm -w build
+
+      # 5) Typst (voor PDF)
+      - uses: typst-community/setup-typst@v4
+
+      # 6) Build PDF(s) – via de CLI uit je fork
+      - name: Build PDFs
+        run: |
+          set -euo pipefail
+          node ./mystmd/packages/myst-cli/dist/index.js build --typst 2> build_stderr.log || status=$?
+          : "${status:=0}"
+          if [ -s build_stderr.log ]; then
+            echo "### Typst build stderr" >> $GITHUB_STEP_SUMMARY
+            cat build_stderr.log >> $GITHUB_STEP_SUMMARY
+          fi
+          if grep -qiE '\berror\b' build_stderr.log || [ "$status" -ne 0 ]; then
+            exit 1
+          fi
+
+      # 7) (optioneel) commit exports alleen als gewijzigd
+      - name: Commit and push exports
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A exports || true
+          if ! git diff --cached --quiet; then
+            timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+            git commit -m "Update exports [Typst] (${timestamp})"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          else
+            echo "No changes to commit"
+
+      # 8) Build HTML – opnieuw via je forked CLI
+      - name: Build HTML
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+        run: |
+          node ./mystmd/packages/myst-cli/dist/index.js build --html
+
+      # 9) Upload artifact voor Pages
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _build/html   # pas aan als je output anders is
+
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
-      - name: Install MyST Markdown
-        run: npm install -g mystmd
-  
-      # - name: Setup Typst
-      #   uses: typst-community/setup-typst@v4
-
-      # - name: Build Typst source with MyST
-      #   run: myst build --typst
-      
-      # - name: Setup TeX Live
-      #   uses: teatimeguest/setup-texlive-action@v3
-      #   with:
-      #     packages: |  
-      #       scheme-basic
-      #       xetex
-      #       latexmk
-      #       hyperref
-      #       microtype
-      #       caption
-      #       xcolor
-      #       changepage
-      #       amsfonts
-      #       enumitem
-      #       framed
-      #       booktabs
-      #       fontawesome5
-      #       tcolorbox
-      #       pdfcol
-      #       adjustbox            
-      #       varwidth  
-      #       ulem       
-      #       titlesec   
-      #       amsmath    
-      #       fancyvrb  
-      #       nicefrac
-      #       float
-      #       datetime
-      #       fmtcount
-      #       doi
-
-      # - name: Build pdf
-      #   run: myst build --pdf
-
-#### TRYING TO WORK WITH PYTHON
-      - name: Install python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'  # Use a stable version
-
-      - name: Install poetry
-        run: pip install poetry
-
-      - name: Install dependencies
-        run: poetry install
-
-      - name: Build html
-        run: poetry run myst build --execute --html  # Include --execute
-
-
-#### END WORK WITH PYTHON
-
-      # - name: Build HTML Assets
-      #   run: |
-      #     myst build --execute
-      #     myst build --html
-
-      # - name: Commit and Push Exported Files to Repository
-      #   run: |
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      #     # Show contents for verification
-      #     ls -lh exports/
-
-      #     # Stage the whole exports directory
-      #     git add -f exports/
-
-      #     git commit -m "chore: update export folder from CI" || echo "No changes to commit"
-      #     git push origin HEAD:main
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './_build/html'
-          
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

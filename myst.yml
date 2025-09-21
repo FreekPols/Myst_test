@@ -57,6 +57,8 @@ project:
     - file: test4.md
     - file: customadmonition.md
     - file: test100.ipynb
+    - url: https://mystmd.org
+      title: MyST Markdown
 site:
   template: book-theme
   options:
