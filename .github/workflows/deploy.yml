@@ -30,7 +30,9 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-     #     cache-dependency-path: mystmd/packages
+          cache-dependency-path: |
+            mystmd/packages-lock.json
+            mystmd/packages.json
 
       # Install root deps
       - name: npm ci (root)
