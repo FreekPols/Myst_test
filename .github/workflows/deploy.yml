@@ -41,11 +41,19 @@ jobs:
           cache: 'npm'
           cache-dependency-path: mystmd/package-lock.json
 
-      # 4) Install & build mystmd met Turbo (root script, géén -ws)
+      # 4) Install & build mystmd met Turbo (root script)
       - name: Install & build mystmd (Turbo)
         working-directory: mystmd
         run: |
           npm ci
+          npm run build
+    
+      # 4b) Pin docx naar ESM v8 in de myst-to-docx workspace (fix ESM/CJS)
+      - name: Pin docx to ESM v8 for myst-to-docx
+        working-directory: mystmd
+        run: |
+          npm install -w myst-to-docx docx@^8
+          # optioneel: herbuilden (niet strikt nodig, maar veilig)
           npm run build
 
       # 5) Typst (voor PDF)
