@@ -31,8 +31,8 @@ jobs:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: |
-            mystmd/packages-lock.json
-            mystmd/packages.json
+            mystmd/package-lock.json
+            mystmd/package.json
 
       # Install root deps
       - name: npm ci (root)
