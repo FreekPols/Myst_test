@@ -1,4 +1,4 @@
-# bouwen met eigen mystmd
+# Bouwen met eigen mystmd (npm workspaces) + deploy naar GitHub Pages
 
 name: Build & Deploy (forked mystmd)
 
@@ -13,6 +13,8 @@ permissions:
   id-token: write
 
 env:
+  # Als je site op repo-subpath draait (GitHub Pages user/org repo ≠ root), laat dit staan.
+  # Gebruik '' (lege string) als je op de root publiceert.
   BASE_URL: /${{ github.event.repository.name }}
 
 concurrency:
@@ -26,40 +28,33 @@ jobs:
       # 1) Check out jouw content repo
       - uses: actions/checkout@v4
 
-      # 2) Check out jouw mystmd-fork
+      # 2) Check out je mystmd-fork (pas repo/branch aan indien nodig)
       - name: Checkout mystmd fork
         uses: actions/checkout@v4
         with:
-          repository: FreekPols/mystmd          # <-- jouw fork
-          # ref: feature/admonition               # <-- jouw branch
+          repository: FreekPols/mystmd     # <-- jouw fork
+          # ref: feature/admonition        # <-- optioneel: jouw branch
           path: mystmd
 
-
-          
-      # 3) Node
+      # 3) Node + npm (met cache)
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: mystmd/package-lock.json
 
-      # 3b) pnpm klaarzetten (zet pnpm in PATH; geen auto-install)
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false      # we installeren zelf in de volgende stap
-
-      # 4) mystmd installeren & bouwen (in de forkmap!)
-      - name: Install & build mystmd
+      # 4) mystmd installeren & bouwen (npm workspaces)
+      - name: Install & build mystmd (npm)
         working-directory: mystmd
         run: |
-          pnpm install
-          pnpm -w build
-        
+          npm ci
+          npm run -ws build
 
       # 5) Typst (voor PDF)
       - uses: typst-community/setup-typst@v4
 
       # 6) Build PDF(s) – via de CLI uit je fork
-      - name: Build PDFs
+      - name: Build PDFs with forked CLI
         run: |
           set -euo pipefail
           node ./mystmd/packages/myst-cli/dist/index.js build --typst 2> build_stderr.log || status=$?
@@ -72,8 +67,8 @@ jobs:
             exit 1
           fi
 
-      # 7) (optioneel) commit exports alleen als gewijzigd
-      - name: Commit and push exports
+      # 7) (optioneel) commit exports alleen als er wijzigingen zijn
+      - name: Commit and push exports (optional)
         if: success()
         run: |
           git config user.name "github-actions[bot]"
@@ -86,8 +81,8 @@ jobs:
           else
             echo "No changes to commit"
 
-      # 8) Build HTML – opnieuw via je forked CLI
-      - name: Build HTML
+      # 8) Build HTML – ook via je forked CLI
+      - name: Build HTML with forked CLI
         env:
           BASE_URL: ${{ env.BASE_URL }}
         run: |
@@ -97,7 +92,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _build/html   # pas aan als je output anders is
+          path: _build/html   # pas dit aan als jouw outputmap anders is
 
   deploy:
     needs: build
