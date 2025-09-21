@@ -49,33 +49,33 @@ jobs:
       # Typst voor PDF
       - uses: typst-community/setup-typst@v4
 
-      # Build PDFs via jouw forked CLI
-      - name: Build PDFs with forked CLI
-        run: |
-          set -euo pipefail
-          node ./mystmd/packages/myst-cli/dist/index.js build --typst 2> build_stderr.log || status=$?
-          : "${status:=0}"
-          if [ -s build_stderr.log ]; then
-            echo "### Typst build stderr" >> $GITHUB_STEP_SUMMARY
-            cat build_stderr.log >> $GITHUB_STEP_SUMMARY
-          fi
-          if grep -qiE '\berror\b' build_stderr.log || [ "$status" -ne 0 ]; then
-            exit 1
-          fi
+      # # Build PDFs via jouw forked CLI
+      # - name: Build PDFs with forked CLI
+      #   run: |
+      #     set -euo pipefail
+      #     node ./mystmd/packages/myst-cli/dist/index.js build --typst 2> build_stderr.log || status=$?
+      #     : "${status:=0}"
+      #     if [ -s build_stderr.log ]; then
+      #       echo "### Typst build stderr" >> $GITHUB_STEP_SUMMARY
+      #       cat build_stderr.log >> $GITHUB_STEP_SUMMARY
+      #     fi
+      #     if grep -qiE '\berror\b' build_stderr.log || [ "$status" -ne 0 ]; then
+      #       exit 1
+      #     fi
 
-      # (optioneel) exports committen
-      - name: Commit and push exports (optional)
-        if: success()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A exports || true
-          if ! git diff --cached --quiet; then
-            timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-            git commit -m "Update exports [Typst] (${timestamp})"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
-          else
-            echo "No changes to commit"
+      # # (optioneel) exports committen
+      # - name: Commit and push exports (optional)
+      #   if: success()
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+      #     git add -A exports || true
+      #     if ! git diff --cached --quiet; then
+      #       timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+      #       git commit -m "Update exports [Typst] (${timestamp})"
+      #       git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+      #     else
+      #       echo "No changes to commit"
 
       # HTML build via jouw forked CLI
       - name: Build HTML with forked CLI
