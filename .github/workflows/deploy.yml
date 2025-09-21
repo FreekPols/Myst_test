@@ -43,6 +43,8 @@ jobs:
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
+          pnpm -v
+          
 
       # 4) Build mystmd monorepo
       - name: Install & build mystmd
