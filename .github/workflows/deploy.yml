@@ -55,13 +55,6 @@ jobs:
             pnpm -w build
           
 
-      # 4) Build mystmd monorepo
-      - name: Install & build mystmd
-        working-directory: mystmd
-        run: |
-          pnpm install
-          pnpm -w build
-
       # 5) Typst (voor PDF)
       - uses: typst-community/setup-typst@v4
 
