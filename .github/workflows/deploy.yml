@@ -36,24 +36,24 @@ jobs:
 
 
           
-        # 3) Node
-        - uses: actions/setup-node@v4
-          with:
-            node-version: '20'
+      # 3) Node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-        # 3b) pnpm klaarzetten (zet pnpm in PATH; geen auto-install)
-        - uses: pnpm/action-setup@v4
-          with:
-            version: 9
-            run_install: false      # we installeren zelf in de volgende stap
+      # 3b) pnpm klaarzetten (zet pnpm in PATH; geen auto-install)
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false      # we installeren zelf in de volgende stap
 
-        # 4) mystmd installeren & bouwen (in de forkmap!)
-        - name: Install & build mystmd
-          working-directory: mystmd
-          run: |
-            pnpm install
-            pnpm -w build
-          
+      # 4) mystmd installeren & bouwen (in de forkmap!)
+      - name: Install & build mystmd
+        working-directory: mystmd
+        run: |
+          pnpm install
+          pnpm -w build
+        
 
       # 5) Typst (voor PDF)
       - uses: typst-community/setup-typst@v4
