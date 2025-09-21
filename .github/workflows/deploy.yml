@@ -29,25 +29,37 @@ jobs:
           repository: FreekPols/mystmd
           # ref: main
           path: mystmd
-
+      
+      # Node + npm cache
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: mystmd/package-lock.json
 
-      # Install deps in monorepo root
-      - name: npm ci (root)
-        working-directory: mystmd
-        run: npm ci
 
-      # Build alles m.u.v. myst-to-docx
-      - name: Build mystmd (Turbo, skip docx)
+      
+      # Pin docx → ESM v8 in myst-to-docx (anders ESM/CJS crash)
+      - name: Pin docx to ESM v8 for myst-to-docx
         working-directory: mystmd
-        run: npx turbo run build --filter=!myst-to-docx
+        run: |
+          npm install -w myst-to-docx docx@^8 --no-audit --no-fund
+          node -e "console.log('docx in myst-to-docx =', require('./packages/myst-to-docx/node_modules/docx/package.json').version)"
+      
+      # Build monorepo (laat myst-to-docx meebouwen zodat de pin actief is)
+      - name: Build mystmd (Turbo)
+        working-directory: mystmd
+        run: npx turbo run build
 
-      # Typst voor PDF
-      - uses: typst-community/setup-typst@v4
+
+      # # Typst voor PDF
+      # - uses: typst-community/setup-typst@v4
+
+
+
+
+
+
 
       # # Build PDFs via jouw forked CLI
       # - name: Build PDFs with forked CLI
