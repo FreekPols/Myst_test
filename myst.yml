@@ -65,4 +65,8 @@ site:
     style: ./style/custom.css
     scripts: _static/custom.js
 
-  
+  nav:  
+    - title: hotmail
+      url: "https://hotmail.com"
+    - title: 1980-1990
+      url: "https://wnd-6i6ghfucm9.live-website.com/wp-content/conferentieverslagen/70"   
