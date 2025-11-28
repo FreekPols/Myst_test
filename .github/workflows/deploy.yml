@@ -39,13 +39,13 @@ jobs:
         run: npm install -g mystmd
 
       # setting the date to today
-      - name: generate date
-        shell: bash
-        run: |
-          BUILD_DATE="$(date +'%Y-%m-%d')"          
-          sed -i "s|\${BUILD_DATE}|${BUILD_DATE}|g" myst.yml
-          echo "myst.yml:"
-          grep -nE '^\s*date:' myst.yml
+      # - name: generate date
+      #   shell: bash
+      #   run: |
+      #     BUILD_DATE="$(date +'%Y-%m-%d')"          
+      #     sed -i "s|\${BUILD_DATE}|${BUILD_DATE}|g" myst.yml
+      #     echo "myst.yml:"
+      #     grep -nE '^\s*date:' myst.yml
       
       # building the HTML
       - name: Build HTML Assets
